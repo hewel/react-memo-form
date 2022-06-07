@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     'shared-node-browser': true,
@@ -8,21 +9,19 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:react-hooks/recommended',
   ],
-  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks', 'import', 'jest'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jest'],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
+  // parserOptions: {
+  //   ecmaVersion: 2018,
+  //   sourceType: 'module',
+  //   ecmaFeatures: {
+  //     jsx: true,
+  //   },
+  // },
   rules: {
     'no-var': 'error',
     'prefer-const': 'error',
@@ -46,27 +45,17 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/parsers': {
-      '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-        paths: ['src'],
-      },
-      alias: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      typescript: {
+        alwaysTryTypes: true,
+        project: 'tsconfig.json',
       },
     },
   },
   overrides: [
-    {
-      files: ['src'],
-      parserOptions: {
-        project: './tsconfig.json',
-      },
-    },
     {
       files: ['tests/**/*.tsx'],
       env: {
